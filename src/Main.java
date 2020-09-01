@@ -15,21 +15,24 @@ public class Main {
         System.out.println(liste2[1]);
 
 	 */
-
         list.add(12);
         list.add(11);
         list.add(10);
         list.add(9);
         list.add(8);
+        list.add(7);
+        list.add(4, 132);
+        testRemove(list);
+    }
 
-        System.out.println("Size på liste: " + list.size());
-
+    public static void testRemove(IntOnlyArrayList list) {
         System.out.println("list index 0: " + " " + list.get(0));
         System.out.println("list index 1: " + " " + list.get(1));
         System.out.println("list index 2: " + " " + list.get(2));
-        System.out.println("list index 2: " + " " + list.get(3));
-        System.out.println("list index 2: " + " " + list.get(4));
-
+        System.out.println("list index 3: " + " " + list.get(3));
+        System.out.println("list index 4: " + " " + list.get(4));
+        System.out.println("list index 5: " + " " + list.get(5));
         System.out.println("Size på liste: " + list.size());
+        System.out.println("");
     }
 }
