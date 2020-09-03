@@ -11,8 +11,7 @@ public class Main {
         list.add(9);
         list.add(8);
         list.add(7);
-        list.add(35, 15);
-        testIntOnlyArraylist(list);
+        list.add(6, 15);
 
         System.out.println(list);
     }
