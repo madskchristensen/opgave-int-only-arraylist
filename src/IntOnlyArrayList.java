@@ -25,8 +25,7 @@ public class IntOnlyArrayList {
     public void clear() {
         list = new int[0];
     }
-
-    // todo
+    
     // 1. Opdel originalt array i 3. En del der er mindre end index, større end index og
     // en temp variabel der indeholder værdien fra parameter index i det originale array.
     // 2. Dan nyt array og indsæt værdier samt value fra parameter på index fra parameter.
