@@ -1,4 +1,7 @@
-import java.sql.SQLOutput;
+import java.util.Arrays;
+
+// Klasse der imitierer ArrayList
+// Virker kun med int typen
 
 public class IntOnlyArrayList {
     private int list[];
@@ -13,6 +16,7 @@ public class IntOnlyArrayList {
 
         } catch(IndexOutOfBoundsException e) {
             e.printStackTrace();
+            System.out.print("[ERROR] ");
         }
 
         return 0;
@@ -30,31 +34,58 @@ public class IntOnlyArrayList {
     public void add(int index, int value) {
         int newList[] = new int[list.length + 1];
 
-        int position = 0;
+        // hvis index er 0 så tilføj til første plads i array og indsæt resten af array
+        if(index == 0) {
 
-        for(int element : list) {
-            newList[position] = element;
-            position = position + 1;
+            newList[index] = value;
+
+            for(int i = 1; i < newList.length; i++) {
+                newList[i] = list[i - 1];
+            }
+
+            list = newList;
+
+            // eller hvis index er større end 0 og mindre end længden af listen
+            // tilføj tal før index, tilføj value til index og tilføj tal efter index
+        } else if(index > 0 && index < list.length) {
+            for(int i = 0; i < index; i++) {
+                newList[i] = list[i];
+            }
+
+            newList[index] = value;
+
+            for(int i = index; i < list.length; i++) {
+                newList[i + 1] = list[i];
+            }
+
+            list = newList;
+        } else if(index > list.length) {
+            int difference = index - (list.length - 1);
+
+            int newListSizeDifference[] = new int[list.length + difference];
+
+            for(int i = 0; i < list.length; i++) {
+                newListSizeDifference[i] = list[i];
+            }
+
+            newListSizeDifference[index] = value;
+
+            list = newListSizeDifference;
         }
-
-        int temp = newList[index];
-        newList[index] = value;
-
-        newList[newList.length - 1] = temp;
     }
 
     // find ud af hvor stort array er
     // kopier indhold fra gammelt array
     // lav nyt array som er + 1 af arraySize og indsæt indhold fra gammelt array
     public void add(int value) {
+        int newList[] = new int[list.length + 1];
+
         if(list.length == 0) {
-            int newList[] = new int[list.length + 1];
             newList[0] = value;
 
             list = newList;
 
         } else {
-            int newList[] = new int[list.length + 1];
 
             int position = 0;
 
@@ -81,6 +112,8 @@ public class IntOnlyArrayList {
                 newList[i] = list[i + 1];
             }
 
+            list = newList;
+
             // ellers hvis index er over 0 og mindre end længden på listen (indenfor bounds)
             // så kopier alle værdier fra 0 og op til index
             // samt alle værdier efter index
@@ -92,9 +125,9 @@ public class IntOnlyArrayList {
             for(int i = index; i < newList.length; i++) {
                 newList[i] = list[i + 1];
             }
-        }
 
-        list = newList;
+            list = newList;
+        }
     }
 
     public int size() {
@@ -102,4 +135,10 @@ public class IntOnlyArrayList {
         return list.length;
     }
 
+    @Override
+    public String toString() {
+        return "IntOnlyArrayList{" +
+                "list=" + Arrays.toString(list) +
+                '}';
+    }
 }
